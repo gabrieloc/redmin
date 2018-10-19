@@ -7,25 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B2F2FF8621799B5200DF20D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF8521799B5200DF20D3 /* AppDelegate.swift */; };
-		B2F2FF8821799B5200DF20D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF8721799B5200DF20D3 /* ViewController.swift */; };
-		B2F2FF8B21799B5200DF20D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F2FF8921799B5200DF20D3 /* Main.storyboard */; };
-		B2F2FF8D21799B5300DF20D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F2FF8C21799B5300DF20D3 /* Assets.xcassets */; };
-		B2F2FF9021799B5300DF20D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F2FF8E21799B5300DF20D3 /* LaunchScreen.storyboard */; };
+		B2F2FFAC21799D8500DF20D3 /* redmin.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F2FFAA21799D8500DF20D3 /* redmin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FFA121799D2200DF20D3 /* Endpoint.swift */; };
+		B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9D21799CBD00DF20D3 /* Post.swift */; };
+		B2F2FFB721799DAF00DF20D3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9B21799CB900DF20D3 /* Comment.swift */; };
+		B2F2FFB821799DAF00DF20D3 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9F21799CF900DF20D3 /* Node.swift */; };
+		B2F2FFD6217A07BC00DF20D3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FFD5217A07BC00DF20D3 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B2F2FF8221799B5200DF20D3 /* redditlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = redditlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2F2FF8521799B5200DF20D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B2F2FF8721799B5200DF20D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B2F2FF8A21799B5200DF20D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B2F2FF8C21799B5300DF20D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B2F2FF8F21799B5300DF20D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B2F2FF9121799B5300DF20D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2F2FF9B21799CB900DF20D3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		B2F2FF9D21799CBD00DF20D3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B2F2FF9F21799CF900DF20D3 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		B2F2FFA121799D2200DF20D3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		B2F2FFA821799D8500DF20D3 /* Redmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2F2FFAA21799D8500DF20D3 /* redmin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = redmin.h; sourceTree = "<group>"; };
+		B2F2FFAB21799D8500DF20D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2F2FFD5217A07BC00DF20D3 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B2F2FF7F21799B5200DF20D3 /* Frameworks */ = {
+		B2F2FFA521799D8500DF20D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,7 +40,7 @@
 		B2F2FF7921799B5200DF20D3 = {
 			isa = PBXGroup;
 			children = (
-				B2F2FF8421799B5200DF20D3 /* redditlight */,
+				B2F2FFA921799D8500DF20D3 /* redmin */,
 				B2F2FF8321799B5200DF20D3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,43 +48,56 @@
 		B2F2FF8321799B5200DF20D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B2F2FF8221799B5200DF20D3 /* redditlight.app */,
+				B2F2FFA821799D8500DF20D3 /* Redmin.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B2F2FF8421799B5200DF20D3 /* redditlight */ = {
+		B2F2FFA921799D8500DF20D3 /* redmin */ = {
 			isa = PBXGroup;
 			children = (
-				B2F2FF8521799B5200DF20D3 /* AppDelegate.swift */,
-				B2F2FF8721799B5200DF20D3 /* ViewController.swift */,
-				B2F2FF8921799B5200DF20D3 /* Main.storyboard */,
-				B2F2FF8C21799B5300DF20D3 /* Assets.xcassets */,
-				B2F2FF8E21799B5300DF20D3 /* LaunchScreen.storyboard */,
-				B2F2FF9121799B5300DF20D3 /* Info.plist */,
+				B2F2FF9B21799CB900DF20D3 /* Comment.swift */,
+				B2F2FF9D21799CBD00DF20D3 /* Post.swift */,
+				B2F2FFD5217A07BC00DF20D3 /* Image.swift */,
+				B2F2FF9F21799CF900DF20D3 /* Node.swift */,
+				B2F2FFA121799D2200DF20D3 /* Endpoint.swift */,
+				B2F2FFAA21799D8500DF20D3 /* redmin.h */,
+				B2F2FFAB21799D8500DF20D3 /* Info.plist */,
 			);
-			path = redditlight;
+			path = redmin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B2F2FFA321799D8500DF20D3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2F2FFAC21799D8500DF20D3 /* redmin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		B2F2FF8121799B5200DF20D3 /* redditlight */ = {
+		B2F2FFA721799D8500DF20D3 /* Redmin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2F2FF9421799B5300DF20D3 /* Build configuration list for PBXNativeTarget "redditlight" */;
+			buildConfigurationList = B2F2FFB121799D8500DF20D3 /* Build configuration list for PBXNativeTarget "Redmin" */;
 			buildPhases = (
-				B2F2FF7E21799B5200DF20D3 /* Sources */,
-				B2F2FF7F21799B5200DF20D3 /* Frameworks */,
-				B2F2FF8021799B5200DF20D3 /* Resources */,
+				B2F2FFA321799D8500DF20D3 /* Headers */,
+				B2F2FFA421799D8500DF20D3 /* Sources */,
+				B2F2FFA521799D8500DF20D3 /* Frameworks */,
+				B2F2FFA621799D8500DF20D3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = redditlight;
-			productName = redditlight;
-			productReference = B2F2FF8221799B5200DF20D3 /* redditlight.app */;
-			productType = "com.apple.product-type.application";
+			name = Redmin;
+			productName = redmin;
+			productReference = B2F2FFA821799D8500DF20D3 /* Redmin.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -94,12 +109,12 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = gabrieloc;
 				TargetAttributes = {
-					B2F2FF8121799B5200DF20D3 = {
+					B2F2FFA721799D8500DF20D3 = {
 						CreatedOnToolsVersion = 10.0;
 					};
 				};
 			};
-			buildConfigurationList = B2F2FF7D21799B5200DF20D3 /* Build configuration list for PBXProject "redditlight" */;
+			buildConfigurationList = B2F2FF7D21799B5200DF20D3 /* Build configuration list for PBXProject "redmin" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,54 +127,35 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B2F2FF8121799B5200DF20D3 /* redditlight */,
+				B2F2FFA721799D8500DF20D3 /* Redmin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B2F2FF8021799B5200DF20D3 /* Resources */ = {
+		B2F2FFA621799D8500DF20D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F2FF9021799B5300DF20D3 /* LaunchScreen.storyboard in Resources */,
-				B2F2FF8D21799B5300DF20D3 /* Assets.xcassets in Resources */,
-				B2F2FF8B21799B5200DF20D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B2F2FF7E21799B5200DF20D3 /* Sources */ = {
+		B2F2FFA421799D8500DF20D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F2FF8821799B5200DF20D3 /* ViewController.swift in Sources */,
-				B2F2FF8621799B5200DF20D3 /* AppDelegate.swift in Sources */,
+				B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */,
+				B2F2FFB721799DAF00DF20D3 /* Comment.swift in Sources */,
+				B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */,
+				B2F2FFB821799DAF00DF20D3 /* Node.swift in Sources */,
+				B2F2FFD6217A07BC00DF20D3 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		B2F2FF8921799B5200DF20D3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2F2FF8A21799B5200DF20D3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B2F2FF8E21799B5300DF20D3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2F2FF8F21799B5300DF20D3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B2F2FF9221799B5300DF20D3 /* Debug */ = {
@@ -278,46 +274,68 @@
 			};
 			name = Release;
 		};
-		B2F2FF9521799B5300DF20D3 /* Debug */ = {
+		B2F2FFB221799D8500DF20D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = USYSB33394;
-				INFOPLIST_FILE = redditlight/Info.plist;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = redmin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieloc.redditlight;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieloc.redmin;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		B2F2FF9621799B5300DF20D3 /* Release */ = {
+		B2F2FFB321799D8500DF20D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = USYSB33394;
-				INFOPLIST_FILE = redditlight/Info.plist;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = redmin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieloc.redditlight;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieloc.redmin;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B2F2FF7D21799B5200DF20D3 /* Build configuration list for PBXProject "redditlight" */ = {
+		B2F2FF7D21799B5200DF20D3 /* Build configuration list for PBXProject "redmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2F2FF9221799B5300DF20D3 /* Debug */,
@@ -326,11 +344,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2F2FF9421799B5300DF20D3 /* Build configuration list for PBXNativeTarget "redditlight" */ = {
+		B2F2FFB121799D8500DF20D3 /* Build configuration list for PBXNativeTarget "Redmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B2F2FF9521799B5300DF20D3 /* Debug */,
-				B2F2FF9621799B5300DF20D3 /* Release */,
+				B2F2FFB221799D8500DF20D3 /* Debug */,
+				B2F2FFB321799D8500DF20D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

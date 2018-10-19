@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:redditlight.xcodeproj">
+      location = "self:/Users/gabrieloc/src/github.com/gabrieloc/redditlight/redmin.xcodeproj">
    </FileRef>
 </Workspace>
