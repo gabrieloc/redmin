@@ -42,50 +42,16 @@ public struct Post: Resource {
 		guard let text = self.text else {
 			return nil
 		}
-		let preview = text[..<text.index(text.startIndex, offsetBy: min(text.count, endIndex))].trimmingCharacters(in: .whitespacesAndNewlines)
-		return "\(preview)..."
-	}
-}
-
-public struct PostsResponse: Response {
-	let postNode: Node<Post>
-	
-	public var posts: [Post] {
-		return postNode.data.children?.map { $0.data } ?? [Post]()
-	}
-	
-	public init(from decoder: Decoder) throws {
-		let container = try decoder.singleValueContainer()
-		postNode = try container.decode(Node<Post>.self)
-	}
-}
-
-public struct PostsEndpoint: Endpoint {
-	public typealias R = PostsResponse
-	
-	public enum Category: String {
-		case hot, new, random, rising, top
-	}
-	
-	let _category: Category
-	let limit: Int
-	
-	public var category: String {
-		return _category.rawValue
-	}
-	
-	public init(category: Category, limit: Int) {
-		self._category = category
-		self.limit = limit
-	}
-	
-	public var resourcePath: String {
-		return category
-	}
-	
-	public var queryItems: [URLQueryItem]? {
-		return [
-			URLQueryItem(name: "limit", value: String(limit))
-		]
+		
+		let preview: String = {
+			if let firstParagraph = text.components(separatedBy: .newlines).first,
+				firstParagraph.count < endIndex {
+				return firstParagraph
+			}
+			let slice = text[..<text.index(text.startIndex, offsetBy: min(text.count, endIndex))]
+			return String(slice)
+		}()
+		
+		return "\(preview.trimmingCharacters(in: .whitespacesAndNewlines))..."
 	}
 }

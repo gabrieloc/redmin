@@ -29,6 +29,7 @@ public protocol Endpoint {
 	associatedtype R: Response
 	var resourcePath: String { get }
 	var queryItems: [URLQueryItem]? { get }
+	var session: URLSession { get }
 }
 
 extension Endpoint {
@@ -43,28 +44,34 @@ extension Endpoint {
 		return components.url!
 	}
 	
-	public func request(_ completion: @escaping ((EndpointResponse<R>) -> Void)) {
-		let decoder = JSONDecoder()
-		
-		func createResponse(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?) -> EndpointResponse<R> {
-			guard let data = data else {
-				return .failure(error ?? NetworkError.requestError)
-			}
-			
-			do {
-				let decoded = try decoder.decode(R.self, from: data)
-				return .success(decoded)
-			} catch (let error) {
-				return .failure(error)
-			}
-		}
-		
-		let session = URLSession(configuration: .default)
-		let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-			let response = createResponse(data, response, error)
+	@discardableResult
+	public func request(_ completion: @escaping ((EndpointResponse<R>) -> Void)) -> URLSessionDataTask {
+		let request = URLRequest(
+			url: url,
+			cachePolicy: .returnCacheDataElseLoad,
+			timeoutInterval: 5
+		)
+		let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+			let response = self.createResponse(data, response, error)
 			completion(response)
 		})
 		
 		task.resume()
+		return task
+	}
+	
+	func createResponse(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?) -> EndpointResponse<R> {
+		guard let data = data else {
+			return .failure(error ?? NetworkError.requestError)
+		}
+		
+		let decoder = JSONDecoder()
+
+		do {
+			let decoded = try decoder.decode(R.self, from: data)
+			return .success(decoded)
+		} catch (let error) {
+			return .failure(error)
+		}
 	}
 }

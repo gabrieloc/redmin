@@ -13,6 +13,8 @@
 		B2F2FFB721799DAF00DF20D3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9B21799CB900DF20D3 /* Comment.swift */; };
 		B2F2FFB821799DAF00DF20D3 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9F21799CF900DF20D3 /* Node.swift */; };
 		B2F2FFD6217A07BC00DF20D3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FFD5217A07BC00DF20D3 /* Image.swift */; };
+		B2F66037217B2CF300B7AABA /* PostsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F66036217B2CF300B7AABA /* PostsEndpoint.swift */; };
+		B2F66039217B2D0300B7AABA /* CommentsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F66038217B2D0300B7AABA /* CommentsEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B2F2FFAA21799D8500DF20D3 /* redmin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = redmin.h; sourceTree = "<group>"; };
 		B2F2FFAB21799D8500DF20D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F2FFD5217A07BC00DF20D3 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		B2F66036217B2CF300B7AABA /* PostsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsEndpoint.swift; sourceTree = "<group>"; };
+		B2F66038217B2D0300B7AABA /* CommentsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +61,12 @@
 			isa = PBXGroup;
 			children = (
 				B2F2FF9B21799CB900DF20D3 /* Comment.swift */,
+				B2F66038217B2D0300B7AABA /* CommentsEndpoint.swift */,
 				B2F2FF9D21799CBD00DF20D3 /* Post.swift */,
+				B2F66036217B2CF300B7AABA /* PostsEndpoint.swift */,
+				B2F2FFA121799D2200DF20D3 /* Endpoint.swift */,
 				B2F2FFD5217A07BC00DF20D3 /* Image.swift */,
 				B2F2FF9F21799CF900DF20D3 /* Node.swift */,
-				B2F2FFA121799D2200DF20D3 /* Endpoint.swift */,
 				B2F2FFAA21799D8500DF20D3 /* redmin.h */,
 				B2F2FFAB21799D8500DF20D3 /* Info.plist */,
 			);
@@ -147,8 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F66039217B2D0300B7AABA /* CommentsEndpoint.swift in Sources */,
 				B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */,
 				B2F2FFB721799DAF00DF20D3 /* Comment.swift in Sources */,
+				B2F66037217B2CF300B7AABA /* PostsEndpoint.swift in Sources */,
 				B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */,
 				B2F2FFB821799DAF00DF20D3 /* Node.swift in Sources */,
 				B2F2FFD6217A07BC00DF20D3 /* Image.swift in Sources */,
