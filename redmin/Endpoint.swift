@@ -52,14 +52,19 @@ extension Endpoint {
 	}
 	
 	func createResponse(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?) -> EndpointResponse<R> {
-		guard let data = data else {
-			return .failure(error ?? NetworkError.requestError)
+		guard
+			let data = data,
+			let httpResponse = urlResponse as? HTTPURLResponse,
+			(200..<300).contains(httpResponse.statusCode)
+			else {
+				return .failure(error ?? NetworkError.requestError)
 		}
-
+		
 		do {
 			let decoded = try decoder.decode(R.self, from: data)
 			return .success(decoded)
 		} catch (let error) {
+			print(error)
 			return .failure(error)
 		}
 	}

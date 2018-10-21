@@ -9,15 +9,14 @@
 import Foundation
 
 public struct PostsResponse: Decodable {
-	let postNode: Node<Post>
+	let postNode: Node
 	
-	public var posts: [Post] {
-		return postNode.data.children?.map { $0.data } ?? [Post]()
-	}
+	public let posts: [Post]
 	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
-		postNode = try container.decode(Node<Post>.self)
+		postNode = try container.decode(Node.self)
+		posts = postNode.data.children.compactMap { $0.data as? Post }
 	}
 }
 
@@ -42,7 +41,7 @@ public struct PostsEndpoint: Endpoint {
 	
 	public var resourcePath: String {
 		if let subreddit = self.subreddit {
-			return "r/\(subreddit)/\(category.rawValue)"
+			return "\(subreddit)/\(category.rawValue)"
 		}
 		return category.rawValue
 	}

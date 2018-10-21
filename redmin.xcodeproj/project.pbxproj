@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B200E8A5217C745E003A60B0 /* Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8A4217C745E003A60B0 /* Conveniences.swift */; };
+		B200E8BE217CC391003A60B0 /* More.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8BD217CC391003A60B0 /* More.swift */; };
 		B2F2FFAC21799D8500DF20D3 /* redmin.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F2FFAA21799D8500DF20D3 /* redmin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FFA121799D2200DF20D3 /* Endpoint.swift */; };
 		B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9D21799CBD00DF20D3 /* Post.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		B200E8A4217C745E003A60B0 /* Conveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conveniences.swift; sourceTree = "<group>"; };
+		B200E8BD217CC391003A60B0 /* More.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = More.swift; sourceTree = "<group>"; };
 		B2F2FF9B21799CB900DF20D3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B2F2FF9D21799CBD00DF20D3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B2F2FF9F21799CF900DF20D3 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F2FF9B21799CB900DF20D3 /* Comment.swift */,
+				B200E8BD217CC391003A60B0 /* More.swift */,
 				B2F66038217B2D0300B7AABA /* CommentsEndpoint.swift */,
 				B2F2FF9D21799CBD00DF20D3 /* Post.swift */,
 				B2F66036217B2CF300B7AABA /* PostsEndpoint.swift */,
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F66039217B2D0300B7AABA /* CommentsEndpoint.swift in Sources */,
+				B200E8BE217CC391003A60B0 /* More.swift in Sources */,
 				B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */,
 				B2F2FFB721799DAF00DF20D3 /* Comment.swift in Sources */,
 				B2F66037217B2CF300B7AABA /* PostsEndpoint.swift in Sources */,

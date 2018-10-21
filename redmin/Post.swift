@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Post: Decodable, Equatable {
+public struct Post: Resource, Decodable, Equatable {
 	public struct Preview: Decodable, Equatable {
 		public struct PreviewImages: Decodable, Equatable {
 			public let source: Image

@@ -15,20 +15,20 @@ extension Int {
 	
 	public func postsFromSubreddit(named name: String?, category: PostsEndpoint.Category = .hot, _ completion: @escaping (([Post]) -> Void)) {
 		PostsEndpoint(subreddit: name, category: category, limit: self).request { (response) in
-			guard case EndpointResponse<PostsEndpoint.R>.success(let commentsResponse) = response else {
+			guard case EndpointResponse<PostsEndpoint.R>.success(let postsResponse) = response else {
 				return
 			}
-			completion(commentsResponse.posts)
+			completion(postsResponse.posts)
 		}
 	}
 	
 	public func commentsFromPost(_ post: Post, sort: CommentsEndpoint.Sort = .top, _ completion: @escaping (([Comment]) -> Void)) {
 		CommentsEndpoint(post: post, sort: sort, limit: self).request { (response) in
 			guard
-				case EndpointResponse<CommentsEndpoint.R>.success(let commentsResponse) = response,
-				let comments = commentsResponse.comments else {
+				case EndpointResponse<CommentsEndpoint.R>.success(let commentsResponse) = response else {
 					return
 			}
+			let comments = commentsResponse.comments
 			completion(comments)
 		}
 	}
