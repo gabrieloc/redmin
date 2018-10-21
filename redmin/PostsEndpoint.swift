@@ -21,7 +21,7 @@ public struct PostsResponse: Response {
 	}
 }
 
-public class PostsEndpoint: Endpoint {
+public struct PostsEndpoint: Endpoint {
 	public typealias R = PostsResponse
 	
 	public let session = URLSession(configuration: .default)

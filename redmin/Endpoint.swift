@@ -48,7 +48,7 @@ extension Endpoint {
 	public func request(_ completion: @escaping ((EndpointResponse<R>) -> Void)) -> URLSessionDataTask {
 		let request = URLRequest(
 			url: url,
-			cachePolicy: .returnCacheDataElseLoad,
+			cachePolicy: .returnCacheDataDontLoad,
 			timeoutInterval: 5
 		)
 		let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
