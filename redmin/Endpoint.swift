@@ -26,6 +26,8 @@ public protocol Endpoint {
 	var session: URLSession { get }
 }
 
+fileprivate let decoder = JSONDecoder()
+
 extension Endpoint {
 	var queryItems: [URLQueryItem]? {
 		return nil
@@ -53,8 +55,6 @@ extension Endpoint {
 		guard let data = data else {
 			return .failure(error ?? NetworkError.requestError)
 		}
-		
-		let decoder = JSONDecoder()
 
 		do {
 			let decoded = try decoder.decode(R.self, from: data)

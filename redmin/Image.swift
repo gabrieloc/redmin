@@ -35,7 +35,7 @@ public struct Image: Codable {
 	static let session = URLSession(configuration: .default)
 
 	public enum ImageError: Error {
-		case generic
+		case corruptData
 	}
 	
 	public mutating func fetch(_ completion: @escaping (EndpointResponse<UIImage>) -> Void) {
@@ -46,7 +46,7 @@ public struct Image: Codable {
 		)
 		dataTask = Image.session.dataTask(with: request) { (data, _, error) in
 			guard let data = data, let image = UIImage(data: data) else {
-				completion(.failure(error ?? ImageError.generic))
+				completion(.failure(error ?? ImageError.corruptData))
 				return
 			}
 			completion(.success(image))
