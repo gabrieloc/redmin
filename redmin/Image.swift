@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct Image: Codable {
+public struct Image: Codable, Equatable {
 	public let url: URL
 	public let width: CGFloat
 	public let height: CGFloat

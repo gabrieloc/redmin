@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B200E8A5217C745E003A60B0 /* Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8A4217C745E003A60B0 /* Conveniences.swift */; };
 		B2F2FFAC21799D8500DF20D3 /* redmin.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F2FFAA21799D8500DF20D3 /* redmin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FFA121799D2200DF20D3 /* Endpoint.swift */; };
 		B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9D21799CBD00DF20D3 /* Post.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B200E8A4217C745E003A60B0 /* Conveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conveniences.swift; sourceTree = "<group>"; };
 		B2F2FF9B21799CB900DF20D3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B2F2FF9D21799CBD00DF20D3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B2F2FF9F21799CF900DF20D3 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				B2F2FFA121799D2200DF20D3 /* Endpoint.swift */,
 				B2F2FFD5217A07BC00DF20D3 /* Image.swift */,
 				B2F2FF9F21799CF900DF20D3 /* Node.swift */,
+				B200E8A4217C745E003A60B0 /* Conveniences.swift */,
 				B2F2FFAA21799D8500DF20D3 /* redmin.h */,
 				B2F2FFAB21799D8500DF20D3 /* Info.plist */,
 			);
@@ -158,6 +161,7 @@
 				B2F2FFB721799DAF00DF20D3 /* Comment.swift in Sources */,
 				B2F66037217B2CF300B7AABA /* PostsEndpoint.swift in Sources */,
 				B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */,
+				B200E8A5217C745E003A60B0 /* Conveniences.swift in Sources */,
 				B2F2FFB821799DAF00DF20D3 /* Node.swift in Sources */,
 				B2F2FFD6217A07BC00DF20D3 /* Image.swift in Sources */,
 			);

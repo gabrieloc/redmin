@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct Post: Decodable {
-	public struct Preview: Decodable {
-		public struct PreviewImages: Decodable {
+public struct Post: Decodable, Equatable {
+	public struct Preview: Decodable, Equatable {
+		public struct PreviewImages: Decodable, Equatable {
 			public let source: Image
 			public let resolutions: [Image]
 		}
@@ -53,5 +53,9 @@ public struct Post: Decodable {
 		}()
 		
 		return "\(preview.trimmingCharacters(in: .whitespacesAndNewlines))..."
+	}
+	
+	public var bestPreviewImage: Image? {
+		return preview?.images.last?.source
 	}
 }
