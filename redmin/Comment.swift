@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Comment: Resource {
+public class Comment: Decodable {
 	public let author: String?
 	public let body: String?
 	public let score: Int?
@@ -16,7 +16,7 @@ public class Comment: Resource {
 	public var parent: Comment?
 	public var replies: [Comment]?
 	
-	var replyNodes: Node<Comment>?
+	private var replyNodes: Node<Comment>?
 	
 	public lazy var descendants: [Comment] = {
 		var aggregation = [Comment]()
@@ -47,13 +47,7 @@ public class Comment: Resource {
 		
 		associateComments(for: replyNodes)
 	}
-	
-	public func encode(to encoder: Encoder) throws {
-		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(body, forKey: .body)
-		try container.encode(score, forKey: .score)
-	}
-	
+
 	func aggregateDescendants(of comment: Comment, into collection: inout [Comment]) {
 		comment.replies?.forEach { reply in
 			collection.append(reply)

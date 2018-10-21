@@ -19,14 +19,8 @@ public enum EndpointResponse<Response> {
 	case failure(Error)
 }
 
-public protocol Resource: Codable {
-}
-
-public protocol Response: Decodable {
-}
-
 public protocol Endpoint {
-	associatedtype R: Response
+	associatedtype R: Decodable
 	var resourcePath: String { get }
 	var queryItems: [URLQueryItem]? { get }
 	var session: URLSession { get }
@@ -46,12 +40,7 @@ extension Endpoint {
 	
 	@discardableResult
 	public func request(_ completion: @escaping ((EndpointResponse<R>) -> Void)) -> URLSessionDataTask {
-		let request = URLRequest(
-			url: url,
-			cachePolicy: .returnCacheDataDontLoad,
-			timeoutInterval: 5
-		)
-		let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+		let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
 			let response = self.createResponse(data, response, error)
 			completion(response)
 		})

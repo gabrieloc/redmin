@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CommentsResponse: Response {
+public struct CommentsResponse: Decodable {
 	public let post: Post
 	public let comments: [Comment]?
 	
@@ -25,17 +25,18 @@ public struct CommentsResponse: Response {
 public struct CommentsEndpoint: Endpoint {
 	public typealias R = CommentsResponse
 	
-	public enum Sort: String {
+	public enum Sort: String, CaseIterable {
 		case confidence, top, new, controversial, old, random, qa, live
 	}
 	
+	public static let defaultLimit = 100
 	public let session = URLSession(configuration: .default)
 	
 	let path: String
 	let sort: Sort
 	let limit: Int
 	
-	public init(post: Post, sort: Sort, limit: Int) {
+	public init(post: Post, sort: Sort = .top, limit: Int = CommentsEndpoint.defaultLimit) {
 		self.path = post.commentsPath
 		self.sort = sort
 		self.limit = limit

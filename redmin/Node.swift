@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Node<T: Resource>: Codable {
-	struct Data: Codable {
-		struct Child: Codable {
+struct Node<T: Decodable>: Decodable {
+	struct Data: Decodable {
+		struct Child: Decodable {
 			let data: T
 		}
 		let children: [Child]?

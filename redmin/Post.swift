@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct Post: Resource {
-	public struct Preview: Codable {
-		public struct PreviewImages: Codable {
+public struct Post: Decodable {
+	public struct Preview: Decodable {
+		public struct PreviewImages: Decodable {
 			public let source: Image
 			public let resolutions: [Image]
 		}

@@ -13,6 +13,8 @@ public struct Image: Codable {
 	public let width: CGFloat
 	public let height: CGFloat
 	
+	static var timeout: TimeInterval = 10
+	
 	public var heightRatio: CGFloat {
 		return height / width
 	}
@@ -28,16 +30,8 @@ public struct Image: Codable {
 		height = try container.decode(CGFloat.self, forKey: .height)
 	}
 	
-	public func encode(to encoder: Encoder) throws {
-		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(url, forKey: .url)
-		try container.encode(width, forKey: .width)
-		try container.encode(height, forKey: .height)
-	}
-	
 	var dataTask: URLSessionDataTask?
 	
-	static let cache = NSCache<NSString, UIImage>()
 	static let session = URLSession(configuration: .default)
 
 	public enum ImageError: Error {
@@ -45,22 +39,16 @@ public struct Image: Codable {
 	}
 	
 	public mutating func fetch(_ completion: @escaping (EndpointResponse<UIImage>) -> Void) {
-		let key = url.absoluteString as NSString
-		if let image = Image.cache.object(forKey: key) {
-			completion(.success(image))
-			return
-		}
 		let request = URLRequest(
 			url: url,
 			cachePolicy: .returnCacheDataElseLoad,
-			timeoutInterval: 10
+			timeoutInterval: Image.timeout
 		)
 		dataTask = Image.session.dataTask(with: request) { (data, _, error) in
 			guard let data = data, let image = UIImage(data: data) else {
 				completion(.failure(error ?? ImageError.generic))
 				return
 			}
-			Image.cache.setObject(image, forKey: key)
 			completion(.success(image))
 		}
 		dataTask?.resume()
