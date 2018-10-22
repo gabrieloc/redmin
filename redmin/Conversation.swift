@@ -8,49 +8,22 @@
 
 import Foundation
 
-extension Array where Element == Node<Conversation.Item> {
-//	var categorized: ([Comment], More?) {
-//		var comments = [Comment]()
-//		var more: More?
-//
-//		forEach { child in
-//			//			switch child.kind {
-//			//			case .more:
-//			//				more = child.data
-//			//			case .t1:
-//			//				comments.append(child.data)
-//			//			default:
-//			//				break
-//			//			}
-//			switch child.data {
-//			case .comment(let comment):
-//				comments.append(comment)
-//			case .more(let _more):
-//				more = _more
-//			case .test:
-//				break
-//			}
-//		}
-//		return (comments, more)
-//	}
-}
-
 public struct Conversation: Decodable {
 	
 	public enum Item: Resource, Decodable {
-		
-		enum ConversationItemError: Error {
+		enum ItemError: Error {
 			case unknownType
 		}
 		
-//		case test
 		case comment(Comment)
 		case more(More)
 		
 		public var data: Any {
 			switch self {
-			case .comment(let comment): return comment
-			case .more(let more): return more
+			case .comment(let comment):
+				return comment
+			case .more(let more):
+				return more
 			}
 		}
 		
@@ -60,16 +33,12 @@ public struct Conversation: Decodable {
 			} else if let more = try? More(from: decoder) {
 				self = .more(more)
 			} else {
-			//		throw AnyCommentError.unknownType
-//			self = .test
-				fatalError()
+				throw ItemError.unknownType
 			}
 		}
 	}
 	
-	
 	public let post: Post
-	
 	public let items: [Item]
 	
 	public init(from decoder: Decoder) throws {

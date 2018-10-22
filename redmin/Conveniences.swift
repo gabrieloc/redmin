@@ -22,10 +22,10 @@ extension Int {
 		}
 	}
 	
-	public func commentsFromPost(_ post: Post, sort: CommentsEndpoint.Sort = .top, _ completion: @escaping (([Comment]) -> Void)) {
-		CommentsEndpoint(post: post, sort: sort, limit: self).request { (response) in
+	public func commentsFromPost(_ post: Post, sort: ConversationEndpoint.Sort = .top, _ completion: @escaping (([Comment]) -> Void)) {
+		ConversationEndpoint(post: post, sort: sort, limit: self).request { (response) in
 			guard
-				case EndpointResponse<CommentsEndpoint.R>.success(let commentsResponse) = response else {
+				case EndpointResponse<ConversationEndpoint.R>.success(let commentsResponse) = response else {
 					return
 			}
 			let comments = commentsResponse.items.compactMap { $0.data as? Comment }
@@ -33,7 +33,7 @@ extension Int {
 		}
 	}
 	
-	public func commentsFromSubreddit(named name: String?, category: PostsEndpoint.Category = .hot, sort: CommentsEndpoint.Sort = .top, _ completion: @escaping (([Comment]) -> Void)) {
+	public func commentsFromSubreddit(named name: String?, category: PostsEndpoint.Category = .hot, sort: ConversationEndpoint.Sort = .top, _ completion: @escaping (([Comment]) -> Void)) {
 		let sampleSize = 100
 		sampleSize.postsFromSubreddit(named: name, category: category) { (posts) in
 			self.aggregateComments(from: posts) {
@@ -47,7 +47,6 @@ extension Int {
 		posts.forEach { post in
 			commentsFromPost(post) { (comments) in
 				aggregation += comments
-//				aggregation += comments.flatMap { $0.descendants }
 				
 				if aggregation.count >= self || post == posts.last! {
 					completion(Array(aggregation[0..<self]))

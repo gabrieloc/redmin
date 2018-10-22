@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CommentsEndpoint: Endpoint {
+public struct ConversationEndpoint: Endpoint {
 	public typealias R = Conversation
 	
 	public enum Sort: String, CaseIterable {
@@ -22,7 +22,7 @@ public struct CommentsEndpoint: Endpoint {
 	let sort: Sort
 	let limit: Int
 	
-	public init(post: Post, sort: Sort = .top, limit: Int = CommentsEndpoint.defaultLimit) {
+	public init(post: Post, sort: Sort = .top, limit: Int = ConversationEndpoint.defaultLimit) {
 		self.path = post.commentsPath
 		self.sort = sort
 		self.limit = limit
