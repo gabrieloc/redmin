@@ -20,20 +20,21 @@ public struct PostsResponse: Decodable {
 	}
 }
 
+public enum PostCategory: String, CaseIterable {
+	case hot, new, rising, top
+}
+
 public struct PostsEndpoint: Endpoint {
 	public typealias R = PostsResponse
 	
 	public let session = URLSession(configuration: .default)
 	
-	public enum Category: String, CaseIterable {
-		case hot, new, rising, top
-	}
 	
 	public var subreddit: String?
-	public var category: Category
+	public var category: PostCategory
 	public var limit: Int
 	
-	public init(subreddit: String?, category: Category, limit: Int) {
+	public init(subreddit: String?, category: PostCategory, limit: Int) {
 		self.subreddit = subreddit
 		self.category = category
 		self.limit = limit

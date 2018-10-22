@@ -12,6 +12,11 @@ public struct More: Resource, Decodable {
 	public let count: Int
 	public let children: [String]
 	public let depth: Int
+	public let parentID: String
+	
+	enum CodingKeys: String, CodingKey {
+		case count, children, depth, parentID = "parent_id"
+	}
 	
 	public var title: String {
 		return "\(count) more \(count == 1 ? "reply" : "replies")"

@@ -8,30 +8,26 @@
 
 import Foundation
 
+public enum Sort: String, CaseIterable {
+	case confidence, top, new, controversial, old, random, qa, live
+}
+
 public struct ConversationEndpoint: Endpoint {
 	public typealias R = Conversation
 	
-	public enum Sort: String, CaseIterable {
-		case confidence, top, new, controversial, old, random, qa, live
-	}
-	
 	public static let defaultLimit = 100
 	public let session = URLSession(configuration: .default)
+	public let resourcePath: String
 	
-	let path: String
 	let sort: Sort
 	let limit: Int
 	
 	public init(post: Post, sort: Sort = .top, limit: Int = ConversationEndpoint.defaultLimit) {
-		self.path = post.commentsPath
+		self.resourcePath = post.commentsPath
 		self.sort = sort
 		self.limit = limit
 	}
-	
-	public var resourcePath: String {
-		return path
-	}
-	
+
 	public var queryItems: [URLQueryItem]? {
 		return [
 			URLQueryItem(name: "sort", value: sort.rawValue),
