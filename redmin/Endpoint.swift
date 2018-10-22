@@ -11,7 +11,17 @@ import Foundation
 let baseURL = URL(string: "https://www.reddit.com")!
 
 public enum NetworkError: Error {
-	case requestError, corruptResponse
+	case invalidResponse(statusCode: Int)
+	case corruptResponse
+	
+	public var isAuthenticationRequired: Bool {
+		switch self {
+		case .invalidResponse(let statusCode):
+			return statusCode == 403
+		default:
+			return false
+		}
+	}
 }
 
 public enum EndpointResponse<Response> {
@@ -54,10 +64,13 @@ extension Endpoint {
 	func createResponse(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?) -> EndpointResponse<R> {
 		guard
 			let data = data,
-			let httpResponse = urlResponse as? HTTPURLResponse,
-			(200..<300).contains(httpResponse.statusCode)
+			let httpResponse = urlResponse as? HTTPURLResponse
 			else {
-				return .failure(error ?? NetworkError.requestError)
+				return .failure(error ?? NetworkError.corruptResponse)
+		}
+		
+		guard (200..<300).contains(httpResponse.statusCode) else {
+			return .failure(NetworkError.invalidResponse(statusCode: httpResponse.statusCode))
 		}
 		
 		do {
