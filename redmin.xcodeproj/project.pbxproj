@@ -12,6 +12,7 @@
 		B200E8C0217D8C08003A60B0 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8BF217D8C08003A60B0 /* Conversation.swift */; };
 		B200E8C8217DA71A003A60B0 /* MoreChildrenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8C7217DA71A003A60B0 /* MoreChildrenEndpoint.swift */; };
 		B200E8CC217DBD58003A60B0 /* HTMLParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8CB217DBD58003A60B0 /* HTMLParsing.swift */; };
+		B200E8CE217DD7E9003A60B0 /* TimeFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B200E8CD217DD7E9003A60B0 /* TimeFormatting.swift */; };
 		B2F2FFAC21799D8500DF20D3 /* redmin.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F2FFAA21799D8500DF20D3 /* redmin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F2FFB521799DAF00DF20D3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FFA121799D2200DF20D3 /* Endpoint.swift */; };
 		B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2FF9D21799CBD00DF20D3 /* Post.swift */; };
@@ -28,6 +29,7 @@
 		B200E8BF217D8C08003A60B0 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		B200E8C7217DA71A003A60B0 /* MoreChildrenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreChildrenEndpoint.swift; sourceTree = "<group>"; };
 		B200E8CB217DBD58003A60B0 /* HTMLParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParsing.swift; sourceTree = "<group>"; };
+		B200E8CD217DD7E9003A60B0 /* TimeFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatting.swift; sourceTree = "<group>"; };
 		B2F2FF9B21799CB900DF20D3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B2F2FF9D21799CBD00DF20D3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B2F2FF9F21799CF900DF20D3 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F2FF9B21799CB900DF20D3 /* Comment.swift */,
+				B200E8CD217DD7E9003A60B0 /* TimeFormatting.swift */,
 				B200E8CB217DBD58003A60B0 /* HTMLParsing.swift */,
 				B200E8BD217CC391003A60B0 /* More.swift */,
 				B2F66038217B2D0300B7AABA /* ConversationEndpoint.swift */,
@@ -175,6 +178,7 @@
 				B200E8C8217DA71A003A60B0 /* MoreChildrenEndpoint.swift in Sources */,
 				B2F66037217B2CF300B7AABA /* PostsEndpoint.swift in Sources */,
 				B2F2FFB621799DAF00DF20D3 /* Post.swift in Sources */,
+				B200E8CE217DD7E9003A60B0 /* TimeFormatting.swift in Sources */,
 				B200E8A5217C745E003A60B0 /* Conveniences.swift in Sources */,
 				B2F2FFB821799DAF00DF20D3 /* Node.swift in Sources */,
 				B200E8CC217DBD58003A60B0 /* HTMLParsing.swift in Sources */,

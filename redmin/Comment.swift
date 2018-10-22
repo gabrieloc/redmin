@@ -18,6 +18,8 @@ public struct Comment: Resource {
 	public let id: String
 	public let parentID: String
 	public let depth: Int
+	
+	public let createdAt: Date
 
 	var replyNode: Node<ListingNode<Conversation.Item>>?
 
@@ -32,6 +34,7 @@ public struct Comment: Resource {
 		case bodyHTML = "body_html"
 		case replyNode = "replies"
 		case score
+		case createdAt = "created_utc"
 	}
 	
 	public init(from decoder: Decoder) throws {
@@ -43,6 +46,9 @@ public struct Comment: Resource {
 		parentID = try container.decode(String.self, forKey: .parentID)
 		score = try container.decode(Int.self, forKey: .score)
 		replyNode = try? container.decode(Node<ListingNode<Conversation.Item>>.self, forKey: .replyNode)
+		
+		let unixCreatedAt = try container.decode(Double.self, forKey: .createdAt)
+		createdAt = Date(timeIntervalSince1970: unixCreatedAt)
 	
 		let rawHTML = try container.decode(String.self, forKey: .bodyHTML)
 		bodyHTML = rawHTML.htmlAttributedString(font: Comment.font)
@@ -62,4 +68,8 @@ public struct Comment: Resource {
 		}
 	}
 	
+	public var durationSinceCreation: String {
+		let time = -createdAt.timeIntervalSinceNow
+		return time.prettyDuration
+	}
 }
