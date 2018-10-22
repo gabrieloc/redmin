@@ -11,4 +11,9 @@ import Foundation
 public struct More: Resource, Decodable {
 	public let count: Int
 	public let children: [String]
+	public let depth: Int
+	
+	public var title: String {
+		return "\(count) more \(count == 1 ? "reply" : "replies")"
+	}
 }

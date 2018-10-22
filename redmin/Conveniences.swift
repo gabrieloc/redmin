@@ -28,7 +28,7 @@ extension Int {
 				case EndpointResponse<CommentsEndpoint.R>.success(let commentsResponse) = response else {
 					return
 			}
-			let comments = commentsResponse.comments
+			let comments = commentsResponse.items.compactMap { $0.data as? Comment }
 			completion(comments)
 		}
 	}
@@ -47,7 +47,7 @@ extension Int {
 		posts.forEach { post in
 			commentsFromPost(post) { (comments) in
 				aggregation += comments
-				aggregation += comments.flatMap { $0.descendants }
+//				aggregation += comments.flatMap { $0.descendants }
 				
 				if aggregation.count >= self || post == posts.last! {
 					completion(Array(aggregation[0..<self]))

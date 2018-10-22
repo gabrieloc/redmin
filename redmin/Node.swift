@@ -19,39 +19,13 @@ enum NodeError: Error {
 	case invalidKind
 }
 
-struct Node: Decodable {
-	struct Data: Decodable {
-		struct ChildNode: Decodable {
-			
-			let kind: Kind
-			let data: Resource
-			
-			enum CodingKeys: String, CodingKey {
-				case kind, data
-			}
-			
-			init(from decoder: Decoder) throws {
-				let container = try decoder.container(keyedBy: CodingKeys.self)
-				kind = try container.decode(Kind.self, forKey: .kind)
+struct ListingNode<T: Resource>: Resource, Decodable {
+	let after: String?
+	let before: String?
+	let children: [Node<T>]
+}
 
-				switch kind {
-				case .t1:
-					data = try container.decode(Comment.self, forKey: .data)
-				case .t3:
-					data = try container.decode(Post.self, forKey: .data)
-				case .more:
-					data = try container.decode(More.self, forKey: .data)
-				default:
-					throw NodeError.invalidKind
-				}
-			}
-		}
-		
-		let after: String?
-		let before: String?
-		let children: [ChildNode]
-	}
-	
-	let kind: String
-	let data: Data
+struct Node<D: Resource>: Decodable, Resource {
+	let kind: Kind
+	let data: D
 }

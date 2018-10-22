@@ -8,24 +8,8 @@
 
 import Foundation
 
-public struct CommentsResponse: Decodable {
-	public let post: Post
-	public let comments: [Comment]
-	public let more: More?
-	
-	public init(from decoder: Decoder) throws {
-		var container = try decoder.unkeyedContainer()
-		let postNode = try container.decode(Node.self)
-		post = postNode.data.children.compactMap { $0.data as? Post }.first!
-		
-		let commentsNode = try container.decode(Node.self)
-		comments = commentsNode.data.children.compactMap { $0.data as? Comment }
-		more = commentsNode.data.children.compactMap { $0.data as? More }.first
-	}
-}
-
 public struct CommentsEndpoint: Endpoint {
-	public typealias R = CommentsResponse
+	public typealias R = Conversation
 	
 	public enum Sort: String, CaseIterable {
 		case confidence, top, new, controversial, old, random, qa, live

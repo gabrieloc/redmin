@@ -9,14 +9,14 @@
 import Foundation
 
 public struct PostsResponse: Decodable {
-	let postNode: Node
+	let postNode: Node<ListingNode<Post>>
 	
 	public let posts: [Post]
 	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
 		postNode = try container.decode(Node.self)
-		posts = postNode.data.children.compactMap { $0.data as? Post }
+		posts = postNode.data.children.compactMap { $0.data }
 	}
 }
 
