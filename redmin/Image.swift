@@ -38,12 +38,15 @@ public struct Image: Codable, Equatable {
 		case corruptData
 	}
 	
-	public mutating func fetch(_ completion: @escaping (EndpointResponse<UIImage>) -> Void) {
-		let request = URLRequest(
+	var request: URLRequest {
+		return URLRequest(
 			url: url,
 			cachePolicy: .returnCacheDataElseLoad,
 			timeoutInterval: Image.timeout
 		)
+	}
+	
+	public mutating func fetch(_ completion: @escaping (EndpointResponse<UIImage>) -> Void) {
 		dataTask = Image.session.dataTask(with: request) { (data, _, error) in
 			guard let data = data, let image = UIImage(data: data) else {
 				completion(.failure(error ?? ImageError.corruptData))
@@ -52,6 +55,10 @@ public struct Image: Codable, Equatable {
 			completion(.success(image))
 		}
 		dataTask?.resume()
+	}
+	
+	public static func warmCache(with image: Image) {
+		session.dataTask(with: image.request).resume()
 	}
 	
 	public mutating func cancel() {

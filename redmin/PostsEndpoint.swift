@@ -13,6 +13,10 @@ public struct PostsResponse: Decodable {
 	
 	public let posts: [Post]
 	
+	public var nextPage: Fullname? {
+		return postNode.data.after
+	}
+	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
 		postNode = try container.decode(Node.self)
@@ -28,16 +32,16 @@ public struct PostsEndpoint: Endpoint {
 	public typealias R = PostsResponse
 	
 	public let session = URLSession(configuration: .default)
-	
-	
 	public var subreddit: String?
 	public var category: PostCategory
 	public var limit: Int
+	public var after: Fullname?
 	
-	public init(subreddit: String?, category: PostCategory, limit: Int) {
+	public init(subreddit: String?, category: PostCategory, limit: Int, after: Fullname? = nil) {
 		self.subreddit = subreddit
 		self.category = category
 		self.limit = limit
+		self.after = after
 	}
 	
 	public var resourcePath: String {
@@ -48,8 +52,13 @@ public struct PostsEndpoint: Endpoint {
 	}
 	
 	public var queryItems: [URLQueryItem]? {
-		return [
-			URLQueryItem(name: "limit", value: String(limit))
+		var items = [
+			URLQueryItem(name: "limit", value: String(limit)),
 		]
+		if let after = self.after {
+			items.append(URLQueryItem(name: "after", value: after))
+		}
+		
+		return items
 	}
 }

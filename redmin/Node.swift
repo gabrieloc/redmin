@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias Fullname = String
+
 protocol Resource: Decodable {
 }
 
@@ -20,8 +22,8 @@ enum NodeError: Error {
 }
 
 struct ListingNode<T: Resource>: Resource, Decodable {
-	let after: String?
-	let before: String?
+	let before: Fullname?
+	let after: Fullname?
 	let children: [Node<T>]
 }
 
