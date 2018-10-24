@@ -46,6 +46,8 @@ public struct Image: Codable, Equatable {
 		)
 	}
 	
+	// TODO caching not working for some reason
+	
 	public mutating func fetch(_ completion: @escaping (EndpointResponse<UIImage>) -> Void) {
 		dataTask = Image.session.dataTask(with: request) { (data, _, error) in
 			guard let data = data, let image = UIImage(data: data) else {

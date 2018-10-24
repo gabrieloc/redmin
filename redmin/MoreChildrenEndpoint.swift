@@ -30,6 +30,7 @@ public struct MoreChildrenResponse: Decodable {
 public struct MoreChildrenEndpoint: Endpoint {
 	public typealias R = MoreChildrenResponse
 
+	let maxChildren = 100
 	let more: More
 	public let resourcePath: String
 	public let session = URLSession(configuration: .default)
@@ -40,8 +41,9 @@ public struct MoreChildrenEndpoint: Endpoint {
 	}
 	
 	public var queryItems: [URLQueryItem]? {
+		let childCount = min(more.children.count, maxChildren)
 		return [
-			URLQueryItem(name: "children", value: more.children.joined(separator: ",")),
+			URLQueryItem(name: "children", value: more.children[0..<childCount].joined(separator: ",")),
 			URLQueryItem(name: "api_type", value: "json"),
 			URLQueryItem(name: "link_id", value: more.parentID)
 		]

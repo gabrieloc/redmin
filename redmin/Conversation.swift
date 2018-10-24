@@ -67,3 +67,14 @@ public struct Conversation: Decodable {
 		}
 	}
 }
+
+
+extension Array where Element == Conversation.Item {
+	var comments: [Comment] {
+		return compactMap { $0.data as? Comment }
+	}
+	
+	var more: More? {
+		return compactMap { $0.data as? More }.first
+	}
+}
