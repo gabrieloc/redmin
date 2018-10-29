@@ -31,7 +31,6 @@ public enum PostCategory: String, CaseIterable {
 public struct PostsEndpoint: Endpoint {
 	public typealias R = PostsResponse
 	
-	public let session = URLSession(configuration: .default)
 	public var subreddit: String?
 	public var category: PostCategory
 	public var limit: Int
