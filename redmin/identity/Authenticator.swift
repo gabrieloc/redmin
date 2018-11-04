@@ -49,4 +49,22 @@ public struct Authenticator {
 	public func createController() -> UIViewController {
 		return SFSafariViewController(url: url)
 	}
+	
+	public func retrieveAccessToken(with code: String, _ completion: @escaping (EndpointResponse<TokenRefreshResponse>) -> Void) {
+		let tokenRefresh = TokenRefreshEndpoint(
+			grantType: .authorizationCode(code: code),
+			redirectURI: urlScheme,
+			clientID: clientID
+		)
+		NetworkService.shared.authentication = .authorized(clientID: clientID)
+		tokenRefresh.request { (response) in
+			switch response {
+			case .success(let response):
+				NetworkService.shared.authentication = .authenticated(accessToken: response.accessToken)
+			case .failure:
+				NetworkService.shared.authentication = .none
+			}
+			completion(response)
+		}
+	}
 }

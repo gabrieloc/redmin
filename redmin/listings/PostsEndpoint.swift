@@ -28,7 +28,7 @@ public enum PostCategory: String, CaseIterable {
 	case hot, new, rising, top
 }
 
-public struct PostsEndpoint: Endpoint {
+public class PostsEndpoint: Endpoint {
 	public typealias R = PostsResponse
 	
 	public var subreddit: String?

@@ -10,15 +10,31 @@ import Foundation
 
 public class NetworkService {
 	let session = URLSession.shared
-	public var authentication: (clientID: String, token: String)? = nil
 	public static let shared = NetworkService()
+	
+	public enum Authentication {
+		case none
+		case authorized(clientID: String)
+		case authenticated(accessToken: String)
+	}
+	
+	public var authentication: Authentication
+	
+	public var isAuthenticated: Bool {
+		if case Authentication.authenticated = authentication {
+			return true
+		}
+		return false
+	}
 
 	var baseURL: URL {
 		let path: String = {
-			if authentication?.token != nil {
+			switch authentication {
+			case .authenticated:
 				return "https://oauth.reddit.com"
+			default:
+				return "https://www.reddit.com"
 			}
-			return "https://www.reddit.com"
 		}()
 		return URL(string: path)!
 	}
@@ -27,23 +43,21 @@ public class NetworkService {
 		var headers = [
 			"Content-Type": contentType.rawValue
 		]
-		if let authentication = authentication {
-			let value: String = {
-				if authentication.token.isEmpty {
-					let encoded = authentication.clientID.data(using: String.Encoding.utf8)!.base64EncodedString()
-					return "Basic \(encoded)"
-				} else {
-					return "bearer \(authentication.token)"
-				}
-			}()
-			headers["Authorization"] = value
-			
+		switch authentication {
+		case .none:
+			break
+		case .authorized(let clientID):
+			let token = "\(clientID):"
+			let encoded = token.data(using: String.Encoding.utf8)!.base64EncodedString()
+			headers["Authorization"] = "Basic \(encoded)"
+		case .authenticated(let accessToken):
+			headers["Authorization"] = "bearer \(accessToken)"
 		}
 		return headers
 	}
 
 	internal init() {
-		authentication = nil
+		authentication = .none
 	}
 	
 	func request(_ components: URLComponents, contentType: ContentType, method: Method, completion: @escaping ((Data?, URLResponse?, Error?) -> Void)) -> URLSessionDataTask {

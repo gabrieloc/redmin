@@ -82,8 +82,7 @@ public struct Image: Equatable, Hashable {
 		session.dataTask(with: image.request).resume()
 	}
 	
-	public mutating func cancel() {
+	public func cancel() {
 		dataTask?.cancel()
-		dataTask = nil
 	}
 }

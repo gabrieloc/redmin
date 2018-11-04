@@ -8,8 +8,6 @@
 
 import Foundation
 
-public struct User {
-	public static var current: User? {
-		return nil // TODO
-	}
+public struct User: Decodable, Encodable {	
+	public let name: String	
 }
