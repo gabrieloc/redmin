@@ -10,11 +10,11 @@ import Foundation
 
 public typealias Fullname = String
 
-protocol Resource: Decodable {
+public protocol Resource: Decodable {
 }
 
 enum Kind: String, Decodable {
-	case t1, t3, more, Listing
+	case t1, t2, t3, t4, t5, more, Listing
 }
 
 enum NodeError: Error {

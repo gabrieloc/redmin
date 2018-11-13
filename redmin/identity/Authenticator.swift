@@ -57,14 +57,6 @@ public struct Authenticator {
 			clientID: clientID
 		)
 		NetworkService.shared.authentication = .authorized(clientID: clientID)
-		tokenRefresh.request { (response) in
-			switch response {
-			case .success(let response):
-				NetworkService.shared.authentication = .authenticated(accessToken: response.accessToken)
-			case .failure:
-				NetworkService.shared.authentication = .none
-			}
-			completion(response)
-		}
+		tokenRefresh.request(completion)
 	}
 }

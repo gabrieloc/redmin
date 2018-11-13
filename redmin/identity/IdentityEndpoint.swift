@@ -15,5 +15,6 @@ public struct IdentityEndpoint: Endpoint {
 		return "/api/v1/me"
 	}
 	
-	public init() {}
+	public init() {
+	}
 }

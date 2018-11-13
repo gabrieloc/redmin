@@ -8,10 +8,12 @@
 
 import Foundation
 
-public struct Subreddit: Codable {
+public struct Subreddit: Resource, Codable, Equatable {
 	public var title: String
 	public var displayName: String
-	private var rawDescription: String
+	public var advertiserCategory: String?
+	
+	private var rawDescription: String?
 	private var iconURL: URL?
 	private var iconSize: [Int]?
 	private var bannerURL: URL?
@@ -19,9 +21,10 @@ public struct Subreddit: Codable {
 	
 	public var icon: Image?
 	public var banner: Image?
-	public var description: NSAttributedString
+	public var description: NSAttributedString?
 	
 	enum CodingKeys: String, CodingKey {
+		case advertiserCategory = "advertiser_category"
 		case title
 		case rawDescription = "public_description_html"
 		case displayName = "display_name"
@@ -33,11 +36,12 @@ public struct Subreddit: Codable {
 	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
+		advertiserCategory = try? container.decode(String.self, forKey: .advertiserCategory)
 		title = try container.decode(String.self, forKey: .title)
 		displayName = try container.decode(String.self, forKey: .displayName)
 
-		rawDescription = try container.decode(String.self, forKey: .rawDescription)
-		description = rawDescription.htmlAttributedString(font: UIFont.systemFont(ofSize: 14))
+		rawDescription = try? container.decode(String.self, forKey: .rawDescription)
+		description = rawDescription?.htmlAttributedString(font: UIFont.systemFont(ofSize: 14))
 
 		iconURL = try? container.decode(URL.self, forKey: .iconURL)
 		iconSize = try? container.decode([Int].self, forKey: .iconSize)

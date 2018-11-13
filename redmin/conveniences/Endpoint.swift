@@ -78,6 +78,7 @@ extension Endpoint {
 	
 	@discardableResult
 	public func request(_ completion: @escaping ((EndpointResponse<R>) -> Void)) -> URLSessionDataTask {
+		print("requesting \(components.url?.absoluteString ?? resourcePath)")
 		return NetworkService.shared.request(
 			components,
 			contentType: contentType,

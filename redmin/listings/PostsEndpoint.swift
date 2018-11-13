@@ -49,15 +49,4 @@ public class PostsEndpoint: Endpoint {
 		}
 		return category.rawValue
 	}
-	
-	public var queryItems: [URLQueryItem]? {
-		var items = [
-			URLQueryItem(name: "limit", value: String(limit)),
-		]
-		if let after = self.after {
-			items.append(URLQueryItem(name: "after", value: after))
-		}
-		
-		return items
-	}
 }
