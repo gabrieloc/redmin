@@ -8,6 +8,13 @@
 
 import Foundation
 
+public struct Media: Decodable, Equatable {
+	public let redditVideo: RedditVideo
+	enum CodingKeys: String, CodingKey {
+		case redditVideo = "reddit_video"
+	}
+}
+
 public struct Post: Resource, Decodable, Equatable {
 	public struct Preview: Decodable, Equatable {
 		public struct PreviewImages: Decodable, Equatable {
@@ -18,17 +25,19 @@ public struct Post: Resource, Decodable, Equatable {
 		public let enabled: Bool
 	}
 	
-	public let id: String
-	public let title: String
-	public let text: String?
 	public let attributedText: NSAttributedString?
-	public let subreddit: String
 	public let commentCount: Int
+	public let id: String
+	public let media: Media?
+	public let text: String?
+	public let title: String
 	public let preview: Preview?
+	public let subreddit: String
 	
 	enum CodingKeys: String, CodingKey {
 		case id
 		case title
+		case media
 		case text = "selftext"
 		case textHTML = "selftext_html"
 		case subreddit = "subreddit_name_prefixed"
@@ -38,12 +47,13 @@ public struct Post: Resource, Decodable, Equatable {
 	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-		id = try container.decode(String.self, forKey: .id)
-		title = try container.decode(String.self, forKey: .title)
-		text = try? container.decode(String.self, forKey: .text)
-		subreddit = try container.decode(String.self, forKey: .subreddit)
 		commentCount = try container.decode(Int.self, forKey: .commentCount)
+		id = try container.decode(String.self, forKey: .id)
+		media = try? container.decode(Media.self, forKey: .media)
 		preview = try? container.decode(Preview.self, forKey: .preview)
+		subreddit = try container.decode(String.self, forKey: .subreddit)
+		text = try? container.decode(String.self, forKey: .text)
+		title = try container.decode(String.self, forKey: .title)
 		
 		if let rawHTML = try? container.decode(String.self, forKey: .textHTML) {
 			attributedText = rawHTML.htmlAttributedString(
