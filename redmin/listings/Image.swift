@@ -8,17 +8,7 @@
 
 import UIKit
 
-public struct Image: Codable, Equatable {
-	public let url: URL
-	public let width: CGFloat
-	public let height: CGFloat
-	
-	static var timeout: TimeInterval = 10
-	
-	public var heightRatio: CGFloat {
-		return height / width
-	}
-	
+extension Image: Decodable {
 	enum CodingKeys: String, CodingKey {
 		case url, width, height
 	}
@@ -26,13 +16,42 @@ public struct Image: Codable, Equatable {
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		url = try container.decode(URL.self, forKey: .url)
-		width = try container.decode(CGFloat.self, forKey: .width)
-		height = try container.decode(CGFloat.self, forKey: .height)
+		
+		if let width = try? container.decode(CGFloat.self, forKey: .width),
+			let height = try? container.decode(CGFloat.self, forKey: .height) {
+			self.size = CGSize(width: width, height: height)
+		} else {
+			self.size = nil
+		}
+	}
+}
+
+extension CGSize: Hashable {
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(height.hashValue << 32 ^ width.hashValue)
+	}
+}
+
+public struct Image: Equatable, Hashable {
+	public let url: URL
+	public let size: CGSize?
+	var dataTask: URLSessionDataTask?
+
+	static let session = URLSession(configuration: .default)
+	
+	init(url: URL, size: CGSize?) {
+		self.url = url
+		self.size = size
 	}
 	
-	var dataTask: URLSessionDataTask?
+	static var timeout: TimeInterval = 10
 	
-	static let session = URLSession(configuration: .default)
+	public var heightRatio: CGFloat? {
+		guard let size = size else {
+			return nil
+		}
+		return size.height / size.width
+	}
 
 	public enum ImageError: Error {
 		case corruptData
@@ -63,8 +82,7 @@ public struct Image: Codable, Equatable {
 		session.dataTask(with: image.request).resume()
 	}
 	
-	public mutating func cancel() {
+	public func cancel() {
 		dataTask?.cancel()
-		dataTask = nil
 	}
 }

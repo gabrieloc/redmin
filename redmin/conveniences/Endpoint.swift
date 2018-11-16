@@ -8,7 +8,10 @@
 
 import Foundation
 
-let baseURL = URL(string: "https://www.reddit.com")!
+public enum ContentType: String {
+	case form = "application/x-www-form-urlencoded"
+	case json = "application/json"
+}
 
 public enum NetworkError: Error {
 	case invalidResponse(statusCode: Int)
@@ -29,36 +32,61 @@ public enum EndpointResponse<Response> {
 	case failure(Error)
 }
 
+public enum Method {
+	case get
+	case post(body: [String: String])
+	
+	var rawValue: String {
+		switch self {
+		case .get:
+			return "GET"
+		case .post:
+			return "POST"
+		}
+	}
+}
+
 public protocol Endpoint {
 	associatedtype R: Decodable
 	var resourcePath: String { get }
 	var queryItems: [URLQueryItem]? { get }
-	var session: URLSession { get }
+	var method: Method { get }
+	var contentType: ContentType { get }
 }
 
 fileprivate let decoder = JSONDecoder()
 
 extension Endpoint {
-	var queryItems: [URLQueryItem]? {
+	public var queryItems: [URLQueryItem]? {
 		return nil
 	}
 	
-	var url: URL {
-		let url = baseURL.appendingPathComponent("\(resourcePath).json")
-		var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+	public var contentType: ContentType {
+		return .json
+	}
+	
+	public var method: Method {
+		return .get
+	}
+	
+	var components: URLComponents {
+		let url = "\(resourcePath)\(contentType == .json ? ".json" : "")"
+		var components = URLComponents(string: url)!
 		components.queryItems = [URLQueryItem(name: "raw_json", value: "1")] + (queryItems ?? [])
-		return components.url!
+		return components
 	}
 	
 	@discardableResult
 	public func request(_ completion: @escaping ((EndpointResponse<R>) -> Void)) -> URLSessionDataTask {
-		let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-			let response = self.createResponse(data, response, error)
-			completion(response)
+		print("requesting \(components.url?.absoluteString ?? resourcePath)")
+		return NetworkService.shared.request(
+			components,
+			contentType: contentType,
+			method: method,
+			completion: { (data, response, error) in
+				let response = self.createResponse(data, response, error)
+				completion(response)
 		})
-		
-		task.resume()
-		return task
 	}
 	
 	func createResponse(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?) -> EndpointResponse<R> {

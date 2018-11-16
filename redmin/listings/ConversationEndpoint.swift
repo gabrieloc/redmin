@@ -16,7 +16,6 @@ public struct ConversationEndpoint: Endpoint {
 	public typealias R = Conversation
 	
 	public static let defaultLimit = 100
-	public let session = URLSession(configuration: .default)
 	public let resourcePath: String
 	
 	let sort: Sort

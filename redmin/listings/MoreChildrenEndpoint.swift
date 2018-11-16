@@ -33,7 +33,6 @@ public struct MoreChildrenEndpoint: Endpoint {
 	let maxChildren = 100
 	let more: More
 	public let resourcePath: String
-	public let session = URLSession(configuration: .default)
 	
 	public init(more: More) {
 		self.more = more

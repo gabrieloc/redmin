@@ -28,10 +28,9 @@ public enum PostCategory: String, CaseIterable {
 	case hot, new, rising, top
 }
 
-public struct PostsEndpoint: Endpoint {
+public class PostsEndpoint: Endpoint {
 	public typealias R = PostsResponse
 	
-	public let session = URLSession(configuration: .default)
 	public var subreddit: String?
 	public var category: PostCategory
 	public var limit: Int
@@ -49,16 +48,5 @@ public struct PostsEndpoint: Endpoint {
 			return "\(subreddit)/\(category.rawValue)"
 		}
 		return category.rawValue
-	}
-	
-	public var queryItems: [URLQueryItem]? {
-		var items = [
-			URLQueryItem(name: "limit", value: String(limit)),
-		]
-		if let after = self.after {
-			items.append(URLQueryItem(name: "after", value: after))
-		}
-		
-		return items
 	}
 }
