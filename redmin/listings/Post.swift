@@ -33,16 +33,18 @@ public struct Post: Resource, Decodable, Equatable {
 	public let title: String
 	public let preview: Preview?
 	public let subreddit: String
+    public let url: URL?
 	
 	enum CodingKeys: String, CodingKey {
-		case id
-		case title
-		case media
-		case text = "selftext"
-		case textHTML = "selftext_html"
-		case subreddit = "subreddit_name_prefixed"
-		case commentCount = "num_comments"
-		case preview
+        case commentCount = "num_comments"
+        case id
+        case media
+        case preview
+        case subreddit = "subreddit_name_prefixed"
+        case title
+        case text = "selftext"
+        case textHTML = "selftext_html"
+        case url
 	}
 	
 	public init(from decoder: Decoder) throws {
@@ -54,6 +56,7 @@ public struct Post: Resource, Decodable, Equatable {
 		subreddit = try container.decode(String.self, forKey: .subreddit)
 		text = try? container.decode(String.self, forKey: .text)
 		title = try container.decode(String.self, forKey: .title)
+        url = try? container.decode(URL.self, forKey: .url)
 		
 		if let rawHTML = try? container.decode(String.self, forKey: .textHTML) {
 			attributedText = rawHTML.htmlAttributedString(
